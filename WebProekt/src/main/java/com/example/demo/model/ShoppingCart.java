@@ -1,11 +1,15 @@
 package com.example.demo.model;
 
+import lombok.Data;
+import com.example.demo.model.enumerations.ShoppingCartStatus;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Data
 public class ShoppingCart {
 
     @Id

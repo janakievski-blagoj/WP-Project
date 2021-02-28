@@ -29,7 +29,6 @@ public class ClothesServiceImpl implements ClothesService {
     }
 
 
-
     @Override
     public List<Clothes> findAll() {
         return clothesRepo.findAll();
