@@ -27,7 +27,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
         httpSecurity.csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/", "/home", "/assets/**", "register", "/clothes").permitAll()
+                .antMatchers("/", "/home", "/assets/**", "/register", "/clothes").permitAll()
                 .antMatchers("/admin/**").hasRole("ADMIN")
                 .anyRequest()
                 .authenticated()
@@ -35,7 +35,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .formLogin()
                 .loginPage("/login").permitAll()
                 .failureUrl("/login?error=BadCredentials")
-                .defaultSuccessUrl("/clothes", true)
+                .defaultSuccessUrl("/home", true)
                 .and()
                 .logout()
                     .logoutUrl("/logout")
@@ -45,13 +45,26 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                     .logoutSuccessUrl("/login")
                 .and()
                 .exceptionHandling()
-                .accessDeniedPage("access-denied");
+                .accessDeniedPage("/access-denied");
 
     }
 
 
-    protected void configure(AuthenticationManagerBuilder auth){
-        auth.authenticationProvider(authenticationProvider);
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.inMemoryAuthentication()
+                .withUser("blagoj.janakievski")
+                .password(passwordEncoder.encode("bj"))
+                .authorities("ROLE_USER")
+                .and()
+                .withUser("darko.ristevski")
+                .password(passwordEncoder.encode("dr"))
+                .authorities("ROLE_USER")
+                .and()
+                .withUser("admin")
+                .password(passwordEncoder.encode("admin"))
+                .authorities("ROLE_ADMIN");
+
+        //auth.authenticationProvider(authenticationProvider);
     }
 
 
