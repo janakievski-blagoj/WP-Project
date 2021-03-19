@@ -36,7 +36,7 @@ public class RegisterController {
         return "master-template";
     }
 
-    //Register service has been added
+
     @PostMapping
     public String register(@RequestParam String username,
                            @RequestParam String password,

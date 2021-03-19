@@ -1,7 +1,5 @@
 package com.example.demo.service.impl;
 
-import com.example.demo.model.Clothes;
-import com.example.demo.model.ShoppingCart;
 import com.example.demo.model.User;
 import com.example.demo.model.enumerations.UserType;
 import com.example.demo.model.exceptions.InvalidUsernameOrPasswordException;
@@ -13,8 +11,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {

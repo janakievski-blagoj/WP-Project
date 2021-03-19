@@ -27,13 +27,12 @@ public class LoginController {
         return "master-template";
     }
 
-    //Service for logging in has been created
+
     @PostMapping
     public String login(HttpServletRequest request, Model model) {
         User user = null;
         try {
-            user=this.authService.login(request.getParameter("username"), request.getParameter("password"));
-            //TODO: Edit code here.
+            user = this.authService.login(request.getParameter("username"), request.getParameter("password"));
             request.getSession().setAttribute("user",user);
             return "redirect:/home";
         } catch (InvalidUserCredentialsException exception){
