@@ -36,7 +36,7 @@ public class RegisterController {
         return "master-template";
     }
 
-    //TODO: Add a register service.
+    //Register service has been added
     @PostMapping
     public String register(@RequestParam String username,
                            @RequestParam String password,
@@ -45,9 +45,7 @@ public class RegisterController {
                            @RequestParam String surname,
                            @RequestParam UserType userType) {
         try {
-
-            //TODO: Add code here.
-
+            this.userService.register(username,password,repeatedPassword,name,surname,userType);
             return "redirect:/login";
         } catch (InvalidArgumentsException | PasswordsDoNotMatchException exception) {
             return "redirect:/register?error=" + exception.getMessage();
