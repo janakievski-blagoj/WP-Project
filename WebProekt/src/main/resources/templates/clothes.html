@@ -1,0 +1,73 @@
+<div xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+    <section class="jumbotron text-center">
+        <div class="container">
+            <h1 class="jumbotron-heading">D&B Online Boutique</h1>
+            <h3 class="jumbotron-heading">All articles of clothing</h3>
+        </div>
+    </section>
+
+    <div class="container mb-4">
+        <div class="row">
+            <div class="col-12" th:if="${clothes.size() > 0}">
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th scope="col">Article name</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Quantity</th>
+                            <th scope="col">Manufacturer</th>
+                            <th scope="col">Category</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="clothing : ${clothes}" class="clothes">
+                            <td th:text="${clothing.getName()}"></td>
+                            <td th:text="${clothing.getPrice()}"></td>
+                            <td th:text="${clothing.getQuantity()}"></td>
+                            <td th:text="${clothing.getManufacturer() != null}
+                            ? ${clothing.getManufacturer().getName()} : 'No Manufacturer'"></td>
+                            <td th:text="${clothing.getCategory() != null}
+                            ? ${clothing.getCategory().getName()} : 'No Category'"></td>
+                            <td class="text-right">
+                                <th:block sec:authorize="hasRole('ROLE_ADMIN')">
+                                    <form th:action="@{'/clothes/delete/{id}' (id=${clothing.getId()})}"
+                                          th:method="DELETE">
+                                        <button type="submit"
+                                                class="btn btn-sm btn-danger delete-article">
+                                            <i class="fa fa-trash">Delete</i>
+                                        </button>
+                                    </form>
+                                </th:block>
+                                <th:block sec:authorize="hasRole('ROLE_ADMIN')">
+                                    <a th:href="@{'/clothes/edit-article/{id}' (id=${clothing.getId()})}"
+                                       class="btn btn-sm btn-info edit-article">
+                                        <i class="fa fa-trash">Edit</i>
+                                    </a>
+                                </th:block>
+                                <form th:action="@{'/shopping-cart/add-article/{id}' (id=${clothing.getId()})}"
+                                      th:method="POST"
+                                      sec:authorize="isAuthenticated()">
+                                    <button type="submit"
+                                            class="btn btn-sm btn-primary cart-article">
+                                        <i class="fa fa-trash">Add article to cart</i>
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="col mb-3">
+                <div class="row">
+                    <div class="col-sm-12 col-md-12" sec:authorize="hasRole('ROLE_ADMIN')">
+                        <a href="/clothes/add-article" class="btn btn-block btn-dark add-article-btn">
+                            Add a new article of clothing
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
