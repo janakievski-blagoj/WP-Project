@@ -18,6 +18,8 @@ public class Clothes {
 
     private Integer quantity;
 
+    private String color;
+
     @ManyToOne
     private Category category;
 
@@ -27,12 +29,13 @@ public class Clothes {
     public Clothes() {
     }
 
-    public Clothes(String name, Double price, Integer quantity, Category category, Manufacturer manufacturer) {
+    public Clothes(String name, Double price, Integer quantity, Category category, Manufacturer manufacturer, String color) {
         this.name = name;
         this.price = price;
         this.quantity = quantity;
         this.category = category;
         this.manufacturer = manufacturer;
+        this.color=color;
     }
 
 

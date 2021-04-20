@@ -81,11 +81,12 @@ public class ClothesController {
                               @RequestParam Double price,
                               @RequestParam Integer quantity,
                               @RequestParam Long category,
-                              @RequestParam Long manufacturer) {
+                              @RequestParam Long manufacturer,
+                              @RequestParam String color) {
         if (id != null) {
-            this.clothesService.edit(id, name, price, quantity, category, manufacturer);
+            this.clothesService.edit(id, name, price, quantity, category, manufacturer,color);
         } else {
-            this.clothesService.save(name, price, quantity, category, manufacturer);
+            this.clothesService.save(name, price, quantity, category, manufacturer,color);
         }
         return "redirect:/clothes";
     }

@@ -12,11 +12,11 @@ public interface ClothesService {
 
     Optional<Clothes> findByName(String name);
 
-    Optional<Clothes> save(String name, Double price, Integer quantity, Long category, Long manufacturer);
+    Optional<Clothes> save(String name, Double price, Integer quantity, Long category, Long manufacturer,String color);
 
 
 
-    Optional<Clothes> edit(Long id, String name, Double price, Integer quantity, Long category, Long manufacturer);
+    Optional<Clothes> edit(Long id, String name, Double price, Integer quantity, Long category, Long manufacturer, String color);
 
 
 

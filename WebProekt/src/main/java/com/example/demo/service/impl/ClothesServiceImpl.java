@@ -45,22 +45,23 @@ public class ClothesServiceImpl implements ClothesService {
     }
 
     @Override
-    public Optional<Clothes> save(String name, Double price, Integer quantity, Long categoryID, Long manufacturerID) {
+    public Optional<Clothes> save(String name, Double price, Integer quantity, Long categoryID, Long manufacturerID,String color) {
         Category category = this.categoryRepository.findById(categoryID).orElseThrow(InvalidCategoryIdExceptions::new);
         Manufacturer manufacturer = this.manufacturerRepository.findById(manufacturerID).orElseThrow(InvalidManufacturerIdException::new);
 
         this.clothesRepo.deleteByName(name);
-        return Optional.of(this.clothesRepo.save(new Clothes(name, price, quantity, category, manufacturer)));
+        return Optional.of(this.clothesRepo.save(new Clothes(name, price, quantity, category, manufacturer,color)));
 
     }
 
     @Override
-    public Optional<Clothes> edit(Long id, String name, Double price, Integer quantity, Long categoryId, Long manufacturerId) {
+    public Optional<Clothes> edit(Long id, String name, Double price, Integer quantity, Long categoryId, Long manufacturerId,String color) {
         Clothes piece = this.clothesRepo.findById(id).orElseThrow(InvalidClothesIdException::new);
 
         piece.setName(name);
         piece.setPrice(price);
         piece.setQuantity(quantity);
+        piece.setColor(color);
 
         Category category = this.categoryRepository.findById(categoryId)
                 .orElseThrow(InvalidCategoryIdExceptions::new);
