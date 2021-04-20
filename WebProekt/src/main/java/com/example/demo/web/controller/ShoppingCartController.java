@@ -39,7 +39,7 @@ public class ShoppingCartController {
     }
 
 
-    @PostMapping("/add-product/{id}")
+    @PostMapping("/add-article/{id}")
     public String addArticleToShoppingCart(@PathVariable Long id, Authentication authentication) {
         try {
             User user = (User) authentication.getPrincipal();

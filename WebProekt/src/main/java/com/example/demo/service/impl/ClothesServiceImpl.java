@@ -12,6 +12,7 @@ import com.example.demo.repository.ManufacturerRepo;
 import com.example.demo.service.ClothesService;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
@@ -45,23 +46,28 @@ public class ClothesServiceImpl implements ClothesService {
     }
 
     @Override
-    public Optional<Clothes> save(String name, Double price, Integer quantity, Long categoryID, Long manufacturerID,String color) {
-        Category category = this.categoryRepository.findById(categoryID).orElseThrow(InvalidCategoryIdExceptions::new);
-        Manufacturer manufacturer = this.manufacturerRepository.findById(manufacturerID).orElseThrow(InvalidManufacturerIdException::new);
+    @Transactional
+    public Optional<Clothes> save(String name, Double price, String color, Integer quantity, Long categoryID, Long manufacturerID) {
+        Category category = this.categoryRepository.findById(categoryID)
+                .orElseThrow(InvalidCategoryIdExceptions::new);
+        Manufacturer manufacturer = this.manufacturerRepository.findById(manufacturerID)
+                .orElseThrow(InvalidManufacturerIdException::new);
 
         this.clothesRepo.deleteByName(name);
-        return Optional.of(this.clothesRepo.save(new Clothes(name, price, quantity, category, manufacturer,color)));
+        return Optional.of(this.clothesRepo.save(new Clothes(name, price, color, quantity, category, manufacturer)));
 
     }
 
     @Override
-    public Optional<Clothes> edit(Long id, String name, Double price, Integer quantity, Long categoryId, Long manufacturerId,String color) {
+    @Transactional
+    public Optional<Clothes> edit(Long id, String name, Double price, String color, Integer quantity, Long categoryId, Long manufacturerId) {
         Clothes piece = this.clothesRepo.findById(id).orElseThrow(InvalidClothesIdException::new);
 
         piece.setName(name);
         piece.setPrice(price);
-        piece.setQuantity(quantity);
         piece.setColor(color);
+        piece.setQuantity(quantity);
+
 
         Category category = this.categoryRepository.findById(categoryId)
                 .orElseThrow(InvalidCategoryIdExceptions::new);

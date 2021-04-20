@@ -24,6 +24,7 @@
                         <tr th:each="clothing : ${clothes}" class="clothes">
                             <td th:text="${clothing.getName()}"></td>
                             <td th:text="${clothing.getPrice()}"></td>
+                            <td th:text="${clothing.getColor() }"></td>
                             <td th:text="${clothing.getQuantity()}"></td>
                             <td th:text="${clothing.getManufacturer() != null}
                             ? ${clothing.getManufacturer().getName()} : 'No Manufacturer'"></td>
@@ -40,7 +41,7 @@
                                     </form>
                                 </th:block>
                                 <th:block sec:authorize="hasRole('ROLE_ADMIN')">
-                                    <a th:href="@{'/clothes/edit-article/{id}' (id=${clothing.getId()})}"
+                                    <a th:href="@{'/clothes/edit-form/{id}' (id=${clothing.getId()})}"
                                        class="btn btn-sm btn-info edit-article">
                                         <i class="fa fa-trash">Edit</i>
                                     </a>
@@ -62,7 +63,7 @@
             <div class="col mb-3">
                 <div class="row">
                     <div class="col-sm-12 col-md-12" sec:authorize="hasRole('ROLE_ADMIN')">
-                        <a href="/clothes/add-article" class="btn btn-block btn-dark add-article-btn">
+                        <a href="/clothes/add-form" class="btn btn-block btn-dark add-form-btn">
                             Add a new article of clothing
                         </a>
                     </div>

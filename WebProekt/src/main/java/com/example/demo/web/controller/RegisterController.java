@@ -1,6 +1,6 @@
 package com.example.demo.web.controller;
 
-import com.example.demo.model.enumerations.UserType;
+import com.example.demo.model.enumerations.Role;
 import com.example.demo.model.exceptions.InvalidArgumentsException;
 import com.example.demo.model.exceptions.PasswordsDoNotMatchException;
 import com.example.demo.service.AuthService;
@@ -43,9 +43,9 @@ public class RegisterController {
                            @RequestParam String repeatedPassword,
                            @RequestParam String name,
                            @RequestParam String surname,
-                           @RequestParam UserType userType) {
+                           @RequestParam Role role) {
         try {
-            this.userService.register(username,password,repeatedPassword,name,surname,userType);
+            this.userService.register(username,password,repeatedPassword,name,surname, role);
             return "redirect:/login";
         } catch (InvalidArgumentsException | PasswordsDoNotMatchException exception) {
             return "redirect:/register?error=" + exception.getMessage();

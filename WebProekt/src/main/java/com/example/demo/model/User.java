@@ -1,7 +1,7 @@
 package com.example.demo.model;
 
+import com.example.demo.model.enumerations.Role;
 import lombok.Data;
-import com.example.demo.model.enumerations.UserType;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -30,7 +30,7 @@ public class User implements UserDetails {
     private boolean isEnabled = true;
 
     @Enumerated(value = EnumType.STRING)
-    private UserType userType;
+    private Role role;
 
 
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
@@ -39,17 +39,17 @@ public class User implements UserDetails {
     public User() {
     }
 
-    public User(String username, String password, String name, String surname, UserType userType) {
+    public User(String username, String password, String name, String surname, Role role) {
         this.username = username;
         this.password = password;
         this.name = name;
         this.surname = surname;
-        this.userType = userType;
+        this.role = role;
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Collections.singletonList(userType);
+        return Collections.singletonList(role);
     }
 
     @Override

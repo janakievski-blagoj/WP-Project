@@ -29,13 +29,13 @@ public class Clothes {
     public Clothes() {
     }
 
-    public Clothes(String name, Double price, Integer quantity, Category category, Manufacturer manufacturer, String color) {
+    public Clothes(String name, Double price, String color, Integer quantity, Category category, Manufacturer manufacturer) {
         this.name = name;
         this.price = price;
+        this.color = color;
         this.quantity = quantity;
         this.category = category;
         this.manufacturer = manufacturer;
-        this.color=color;
     }
 
 

@@ -46,7 +46,7 @@ public class ClothesController {
     @GetMapping("/edit-form/{id}")
     public String editArticlePage(@PathVariable Long id, Model model){
         if (this.clothesService.findById(id).isPresent()) {
-            Clothes clothes =this.clothesService.findById(id).get();
+            Clothes clothes = this.clothesService.findById(id).get();
             List<Manufacturer> manufacturers = this.manufacturerService.findAll();
             List<Category> categories = this.categoryService.listCategories();
             model.addAttribute("manufacturers", manufacturers);
@@ -58,7 +58,7 @@ public class ClothesController {
         return "redirect:/clothes?error=ArticleNotFound";
     }
 
-    @GetMapping("/add-article")
+    @GetMapping("/add-form")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public String addArticlePage(Model model){
         List<Manufacturer> manufacturers = this.manufacturerService.findAll();
@@ -79,14 +79,14 @@ public class ClothesController {
     public String saveArticle(@RequestParam(required = false) Long id,
                               @RequestParam String name,
                               @RequestParam Double price,
+                              @RequestParam String color,
                               @RequestParam Integer quantity,
                               @RequestParam Long category,
-                              @RequestParam Long manufacturer,
-                              @RequestParam String color) {
+                              @RequestParam Long manufacturer) {
         if (id != null) {
-            this.clothesService.edit(id, name, price, quantity, category, manufacturer,color);
+            this.clothesService.edit(id, name, price, color, quantity, category, manufacturer);
         } else {
-            this.clothesService.save(name, price, quantity, category, manufacturer,color);
+            this.clothesService.save(name, price,  color, quantity, category, manufacturer);
         }
         return "redirect:/clothes";
     }
