@@ -1,0 +1,83 @@
+<th:block xmlns:th="http://www.thymeleaf.org">
+    <section class="jumbotron text-center">
+        <div class="container">
+            <h1 class="jumbotron-heading">D&B Online Boutique</h1>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-5">
+                <form action="/clothes/add" method="POST">
+                    <input id="id" type="hidden" name="id" th:value="(${clothing} != null ? ${clothing.getId()} : '')">
+                    <div class="form-group">
+                        <label for="name">Article name</label>
+                        <input type="text"
+                               class="form-control"
+                               id="name"
+                               name="name"
+                               th:value="(${clothing} != null ? ${clothing.getName()} : '')"
+                               required
+                               placeholder="Enter article name">
+                    </div>
+                    <div class="form-group">
+                        <label for="price">Price</label>
+                        <input type="text"
+                               class="form-control"
+                               id="price"
+                               name="price"
+                               th:value="(${clothing} != null ? ${clothing.getPrice()} : '')"
+                               placeholder="Price">
+                    </div>
+                    <div class="form-group">
+                        <label for="quantity">Quantity</label>
+                        <input type="text"
+                               class="form-control"
+                               id="quantity"
+                               name="quantity"
+                               th:value="(${clothing} != null ? ${clothing.getQuantity()} : '')"
+                               placeholder="Quantity">
+                    </div>
+                    <div class="form-group">
+                        <label>Category</label>
+                        <select name="category" class="form-control">
+                            <option th:if="${clothing} != null"
+                                    th:selected="${clothing.getCategory() != null &&
+                                                    clothing.getCategory().getId() == cat.getId()}"
+                                    th:each="cat : ${categories}"
+                                    th:value="${cat.getId()}"
+                                    th:text="${cat.getName()}">
+                            </option>
+                            <option th:if="${clothing} == null"
+                                    th:each="cat : ${categories}"
+                                    th:value="${cat.getId()}"
+                                    th:text="${cat.getName()}">
+                            </option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Manufacturer</label>
+                        <select name="manufacturer" class="form-control">
+                            <option th:if="${clothing} != null"
+                                    th:selected="${clothing.getManufacturer() != null &&
+                                                    clothing.getManufacturer().getId() == man.getId()}"
+                                    th:each="man : ${manufacturers}"
+                                    th:value="${man.getId()}"
+                                    th:text="${man.getName()}">
+                            </option>
+                            <option th:if="${clothing} == null"
+                                    th:each="man : ${manufacturers}"
+                                    th:value="${man.getId()}"
+                                    th:text="${man.getName()}">
+                            </option>
+                        </select>
+                    </div>
+                    <button id="submit" type="submit" class="btn btn-primary">Submit</button>
+                    <a type="button" class="btn btn-primary" href="/clothes">Back</a>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+</th:block>

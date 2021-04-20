@@ -1,0 +1,44 @@
+<th:block xmlns:th="http://www.thymeleaf.org">
+    <section class="jumbotron text-center">
+        <div class="container">
+            <h3 class="jumbotron-heading">Shopping cart for
+                <th:block th:if="${#request.getRemoteUser() != null}" th:text="${#request.getRemoteUser()}"></th:block>
+            </h3>
+        </div>
+    </section>
+
+    <div th:if="${hasError}">
+        <h5 class="text-center text-danger" th:text="${error}"></h5>
+    </div>
+
+    <div class="container mb-4">
+        <div class="row">
+            <div class="col-12" th:if="${clothes.size() > 0}">
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th scope="col">Article</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Manufacturer</th>
+                            <th scope="col">Category</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="clothing : ${clothes}" class="cart-item">
+                            <td th:text="${clothing.getName()}"></td>
+                            <td th:text="${clothing.getPrice()}"></td>
+                            <td th:text="${clothing.getManufacturer() != null} ? ${clothing.getManufacturer().getName()} : 'No Manufacturer'"></td>
+                            <td th:text="${clothing.getCategory() != null} ? ${clothing.getCategory().getName()} : 'No Category'"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</th:block>
+
+
+
+
