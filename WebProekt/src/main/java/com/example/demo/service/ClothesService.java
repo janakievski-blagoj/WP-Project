@@ -14,12 +14,7 @@ public interface ClothesService {
 
     Optional<Clothes> save(String name, Double price, String color, Integer quantity, Long category, Long manufacturer);
 
-
-
     Optional<Clothes> edit(Long id, String name, Double price, String color, Integer quantity, Long category, Long manufacturer);
 
-
-
     void deleteById(Long id);
-
 }
