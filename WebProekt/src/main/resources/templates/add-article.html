@@ -9,14 +9,14 @@
         <div class="row">
             <div class="col-md-5">
                 <form action="/clothes/add" method="POST">
-                    <input id="id" type="hidden" name="id" th:value="(${clothing} != null ? ${clothing.getId()} : '')">
+                    <input id="id" type="hidden" name="id" th:value="(${clothes} != null ? ${clothes.getId()} : '')">
                     <div class="form-group">
                         <label for="name">Article name</label>
                         <input type="text"
                                class="form-control"
                                id="name"
                                name="name"
-                               th:value="(${clothing} != null ? ${clothing.getName()} : '')"
+                               th:value="(${clothes} != null ? ${clothes.getName()} : '')"
                                required
                                placeholder="Enter article name">
                     </div>
@@ -26,7 +26,7 @@
                                class="form-control"
                                id="price"
                                name="price"
-                               th:value="(${clothing} != null ? ${clothing.getPrice()} : '')"
+                               th:value="(${clothes} != null ? ${clothes.getPrice()} : '')"
                                placeholder="Price">
                     </div>
                     <div class="form-group">
@@ -35,7 +35,7 @@
                                class="form-control"
                                id="color"
                                name="color"
-                               th:value="(${clothing} != null ? ${clothing.getColor()} : '')"
+                               th:value="(${clothes} != null ? ${clothes.getColor()} : '')"
                                placeholder="Color">
                     </div>
                     <div class="form-group">
@@ -44,20 +44,20 @@
                                class="form-control"
                                id="quantity"
                                name="quantity"
-                               th:value="(${clothing} != null ? ${clothing.getQuantity()} : '')"
+                               th:value="(${clothes} != null ? ${clothes.getQuantity()} : '')"
                                placeholder="Quantity">
                     </div>
                     <div class="form-group">
                         <label>Category</label>
                         <select name="category" class="form-control">
-                            <option th:if="${clothing} != null"
-                                    th:selected="${clothing.getCategory() != null &&
-                                                    clothing.getCategory().getId() == cat.getId()}"
+                            <option th:if="${clothes} != null"
+                                    th:selected="${clothes.getCategory() != null &&
+                                                    clothes.getCategory().getId() == cat.getId()}"
                                     th:each="cat : ${categories}"
                                     th:value="${cat.getId()}"
                                     th:text="${cat.getName()}">
                             </option>
-                            <option th:if="${clothing} == null"
+                            <option th:if="${clothes} == null"
                                     th:each="cat : ${categories}"
                                     th:value="${cat.getId()}"
                                     th:text="${cat.getName()}">
@@ -67,14 +67,14 @@
                     <div class="form-group">
                         <label>Manufacturer</label>
                         <select name="manufacturer" class="form-control">
-                            <option th:if="${clothing} != null"
-                                    th:selected="${clothing.getManufacturer() != null &&
-                                                    clothing.getManufacturer().getId() == man.getId()}"
+                            <option th:if="${clothes} != null"
+                                    th:selected="${clothes.getManufacturer() != null &&
+                                                    clothes.getManufacturer().getId() == man.getId()}"
                                     th:each="man : ${manufacturers}"
                                     th:value="${man.getId()}"
                                     th:text="${man.getName()}">
                             </option>
-                            <option th:if="${clothing} == null"
+                            <option th:if="${clothes} == null"
                                     th:each="man : ${manufacturers}"
                                     th:value="${man.getId()}"
                                     th:text="${man.getName()}">

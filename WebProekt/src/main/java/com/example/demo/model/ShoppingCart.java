@@ -2,6 +2,8 @@ package com.example.demo.model;
 
 import lombok.Data;
 import com.example.demo.model.enumerations.ShoppingCartStatus;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
