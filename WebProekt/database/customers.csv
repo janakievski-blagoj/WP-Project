@@ -1,0 +1,3 @@
+admin,true,true,true,true,admin,$2a$10$s4KtS3FORxxvFtDo/GrWm.NHcBaIlJQdJn.rNgNu0RwX/KNA516zG,ROLE_ADMIN,admin
+blagoj.janakievski,true,true,true,true,Blagoj,$2a$10$J/eVQQ5GQKmjoA8ZE5cbMuLHbjnoMingQApvwnZQaPIhjc2REGd8S,ROLE_USER,Janakievski
+darko.ristevski,true,true,true,true,Darko,$2a$10$KHtJyZRva3YvQm//ooaYGehtMjN6fSaPFfTixLesByPICjn8tOsu2,ROLE_USER,Ristevski
